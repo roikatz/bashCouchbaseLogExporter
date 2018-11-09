@@ -16,6 +16,13 @@ TICKET=${4}/
 USER=user
 CUSTOMER=myCompany
 
+# Currently you need to run it twice. once for gathering the logs (with upload=false) and once to upload (upload=true)
+# usage example: ./getlogs.sh 2018-11-07 cb-node01 false 91919
+# -----------------scriptname YYYY-MM-DD hostname      bool  ticketNumber
+ 
+echo  usage example: ./getlogs.sh 2018-11-07 cb-node01 false 91919
+echo  ---------------- scriptname YYYY-MM-DD hostname----- bool- ticketNumber
+
 echo Node in the cluster IP:  $IP
 echo Running on date: $DATE
  
@@ -30,6 +37,7 @@ LOCAL=/home/$USER/logsFor_$DATE
  
 echo $CBTEMP, $COLLECT, $LOCAL
  
+fileCounter=0
 if [ $ISUPLOAD = false ]; then
 echo Loop through nodes "${arr_hosts[*]}"
 echo "********************"
@@ -48,12 +56,17 @@ do
     echo ${SCP} $USER@${host_name}:${LOCAL}/$COLLECT* .
     ${SCP} $USER@${host_name}:${LOCAL}/$COLLECT* .
 done
+echo "Total number of file copied: " $fileCounter
 fi
- 
+
+fileCounter=0
 if [ $ISUPLOAD = true  ]; then
   for file in $(ls *.zip)
   do
+        echo "Uploading file " $file ": "  $fileCounter
         sudo chown $USER:$USER $file
         curl -v --upload-file $file https://s3.amazonaws.com/customers.couchbase.com/$CUSTOMER/$TICKET
+        let fileCounter++
   done
+  echo "Total number of files uploaded: " $fileCounter
 fi
