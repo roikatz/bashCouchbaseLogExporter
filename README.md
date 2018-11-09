@@ -4,7 +4,8 @@ This bash script will assist you in consolidating your Couchbase cluster logs an
 You won't need any special installations of any tool, just a user who have sudo permissions.
 
 ```
-Note, this is an independent tool and won't be supported by Couchbase. It can make your log collection a bit easier, use it with caution
+Note, this is an independent tool and won't be supported by Couchbase. 
+It can make your log collection a bit easier, use it with caution
 ```
 
 ## What the script does
