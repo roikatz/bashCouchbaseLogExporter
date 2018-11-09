@@ -3,6 +3,10 @@
 This bash script will assist you in consolidating your Couchbase cluster logs and send these to Couchbase.
 You won't need any special installations of any tool, just a user who have sudo permissions.
 
+```
+Note, this is an independent tool and won't be supported by Couchbase. It can make your log collection a bit easier, use it with caution
+```
+
 ## What the script does
 1. Connects to one of the Couchbase nodes to get the cluster map, which is all of the nodes in the cluster
 2. For each node
