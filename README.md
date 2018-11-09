@@ -1,4 +1,4 @@
-# Couchbase log files exporters (BASH)
+# Couchbase log files exporter (BASH)
 
 This bash script will assist you in consolidating your Couchbase cluster logs and send these to Couchbase.
 You won't need any special installations of any tool, just a user who have sudo permissions.
